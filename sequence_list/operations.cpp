@@ -152,9 +152,15 @@ int find_not_exist_minimum_num(int a[], int n) {
     }
     for (int i = 0; i < n; i++) {
         if (a[i] > 0 && a[i] <= n) {
-            idx[a[i] - 1] = 1;
+            idx[a[i] - 1] += 1;
         }
     }
+    for (int i = 0; i < n; i++) {
+        if (idx[i] == 0) {
+            return i + 1;
+        }
+    }
+    return n + 1;
 }
 
 void print(StaticArraySequenceList l) {
@@ -193,5 +199,8 @@ int main() {
     StaticArraySequenceList result = {{}, 0};
     merge(a, b, result);
     print(result);
+    int test1[4] = {-5,1,2,5};
+    int min = find_not_exist_minimum_num(test1, 4);
+    cout << min << "\n";
     return 0;
 }
